@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Albums for Artist</h1>
+    <asp:Label ID="Message" runat="server"></asp:Label>
+    <br /> <br />
     <label style="font-size: x-large; font-weight: 700">Select an Artist: </label>
     <asp:DropDownList ID="ArtistList" runat="server" DataSourceID="ArtistListODS" 
                                                      DataTextField="DisplayField" 
@@ -9,13 +11,13 @@
                                                      AppendDataBoundItems="true">
     <asp:ListItem Value="0">select an artist...</asp:ListItem>
     </asp:DropDownList> &nbsp; &nbsp;
-    <asp:LinkButton ID="FetchAlbums" runat="server">Fetch Albums</asp:LinkButton>
+    <asp:LinkButton ID="FetchAlbums" runat="server" OnClick="FetchAlbums_Click">Fetch Albums</asp:LinkButton>
     <asp:ObjectDataSource ID="ArtistListODS" runat="server" OldValuesParameterFormatString="original_{0}" 
                                                             SelectMethod="Artists_List" 
                                                             TypeName="ChinookSystem.BLL.ArtistController"></asp:ObjectDataSource>
     <br />
     <br />
-    <asp:GridView ID="AlbumsofArtistList" runat="server" AutoGenerateColumns="False">
+    <asp:GridView ID="AlbumsofArtistList" runat="server" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="AlbumsofArtistList_PageIndexChanging" PageSize="5">
         <Columns>
             <asp:TemplateField HeaderText="ID">
                 <ItemTemplate>
@@ -41,5 +43,6 @@
         <EmptyDataTemplate>
             Artist has no Albums on file.
         </EmptyDataTemplate>
+        <PagerSettings Mode="NumericFirstLast" NextPageText="Next" PageButtonCount="3" PreviousPageText="Back" />
     </asp:GridView>
 </asp:Content>

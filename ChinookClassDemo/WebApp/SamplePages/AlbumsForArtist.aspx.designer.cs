@@ -15,14 +15,23 @@ namespace WebApp.SamplePages
     {
 
         /// <summary>
-        /// Artist List control.
+        /// Message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Message;
+
+        /// <summary>
+        /// ArtistList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ArtistList;
-        
+
         /// <summary>
         /// FetchAlbums control.
         /// </summary>
