@@ -50,5 +50,11 @@ namespace WebApp.SamplePages
             }, "Artist Albums", "View artist albums"); // first title, then message. You notice that we are passing the code and two strings as parameters
             // If you don't want a message you have to remove botht he title and the message string
         }
+
+        protected void SelectCheckForException(object sender,
+                                                ObjectDataSourceStatusEventArgs e)
+        {
+            MessageUserControl.HandleDataBoundException(e); // Implementing Dans Nuget
+        }
     }
 }

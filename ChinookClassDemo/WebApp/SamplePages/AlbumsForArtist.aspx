@@ -16,7 +16,7 @@
     <asp:ListItem Value="0">select an artist...</asp:ListItem>
     </asp:DropDownList> &nbsp; &nbsp;
     <asp:LinkButton ID="FetchAlbums" runat="server" OnClick="FetchAlbums_Click">Fetch Albums</asp:LinkButton>
-    <asp:ObjectDataSource ID="ArtistListODS" runat="server" OldValuesParameterFormatString="original_{0}" 
+    <asp:ObjectDataSource ID="ArtistListODS" OnSelected="SelectCheckForException" runat="server" OldValuesParameterFormatString="original_{0}" 
                                                             SelectMethod="Artists_List" 
                                                             TypeName="ChinookSystem.BLL.ArtistController"></asp:ObjectDataSource>
     <br />
