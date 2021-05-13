@@ -23,7 +23,7 @@ namespace WebApp.SamplePages
         {
             if (ArtistList.SelectedIndex ==0)
             {
-                Message.Text = "No Artist has been selected";
+                MessageUserControl.ShowInfo("Artist Selection", "No Artist has been selected");
             }
             else
             {
@@ -40,11 +40,15 @@ namespace WebApp.SamplePages
 
         protected void RefreshList()
         {
-            AlbumController sysmgr = new AlbumController();
-            List<AlbumItem> info = sysmgr.Albums_GetByArtist(int.Parse(ArtistList.SelectedValue));
+            //error handling for the class library calls
+            MessageUserControl.TryRun(() => { // The () means use this one
+                AlbumController sysmgr = new AlbumController();
+                List<AlbumItem> info = sysmgr.Albums_GetByArtist(int.Parse(ArtistList.SelectedValue));
 
-            AlbumsofArtistList.DataSource = info;
-            AlbumsofArtistList.DataBind();
+                AlbumsofArtistList.DataSource = info;
+                AlbumsofArtistList.DataBind();
+            }, "Artist Albums", "View artist albums"); // first title, then message. You notice that we are passing the code and two strings as parameters
+            // If you don't want a message you have to remove botht he title and the message string
         }
     }
 }
