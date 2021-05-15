@@ -54,7 +54,8 @@ namespace WebApp.SamplePages
         protected void SelectCheckForException(object sender,
                                                 ObjectDataSourceStatusEventArgs e)
         {
-            MessageUserControl.HandleDataBoundException(e); // Implementing Dans Nuget
+            MessageUserControl.HandleDataBoundException(e); // Implementing Dans Nuget.  Dont forget to tell the asp webpage side to use this method
+                                                            // I mean this: <asp:ObjectDataSource ID="ArtistListODS" OnSelected="SelectCheckForException"
         }
     }
 }
