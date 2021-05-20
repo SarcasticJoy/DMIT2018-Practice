@@ -14,6 +14,7 @@
                                                      DataValueField="ValueField"
                                                      AppendDataBoundItems="true">
     <asp:ListItem Value="0">select an artist...</asp:ListItem>
+        
     </asp:DropDownList> &nbsp; &nbsp;
     <asp:LinkButton ID="FetchAlbums" runat="server" OnClick="FetchAlbums_Click">Fetch Albums</asp:LinkButton>
     <asp:ObjectDataSource ID="ArtistListODS" OnSelected="SelectCheckForException" runat="server" OldValuesParameterFormatString="original_{0}" 
