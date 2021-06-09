@@ -225,9 +225,12 @@
                 OnInserted="InsertCheckForException"
                 OnSelected="SelectCheckForException"
                 OnUpdated="UpdateCheckForException">
-
             </asp:ObjectDataSource>
-            <asp:ObjectDataSource ID="ArtistListODS" OnSelected="SelectCheckForException" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Artists_List" TypeName="ChinookSystem.BLL.ArtistController"></asp:ObjectDataSource>
+
+            <asp:ObjectDataSource ID="ArtistListODS" OnSelected="SelectCheckForException" runat="server" 
+                OldValuesParameterFormatString="original_{0}" 
+                SelectMethod="Artists_List" 
+                TypeName="ChinookSystem.BLL.ArtistController"></asp:ObjectDataSource>
         </div>
     </div>
 </asp:Content>
