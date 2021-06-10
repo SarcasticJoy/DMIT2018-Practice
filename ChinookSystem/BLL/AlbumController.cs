@@ -18,6 +18,28 @@ namespace ChinookSystem.BLL
     {
 
         #region Queries
+        public List<ArtistAlbumsByTitleandYear> Albums_ArtistAlbumsByTitleandYear()
+        {
+            using (var context = new ChinookSystemContext())
+            {
+               IEnumerable<ArtistAlbumsByTitleandYear> results = context.Albums //adding context is the one change from  grabbing from linqpad
+               .OrderBy(x => x.Artist.Name)
+               .ThenBy(x => x.Title)
+               .ThenByDescending(x => x.ReleaseYear)
+               .Where(x => x.ReleaseYear > 1979 && x.ReleaseYear < 1998)
+               .Select(x => new ArtistAlbumsByTitleandYear
+               {
+                   Artist = x.Artist.Name,
+                   Title = x.Title,
+                   Year = x.ReleaseYear,
+                   Label = x.ReleaseLabel == null ? "Unkown" : x.ReleaseLabel //Replace null with "Unkown"
+               });
+
+                return results.ToList();
+             }
+
+        }
+
         public List<AlbumItem> Albums_GetByArtist(int artistid)
         {
             using (var context = new ChinookSystemContext())
