@@ -20,7 +20,55 @@ namespace WebApp.SamplePages
             TracksSelectionList.DataSource = null;
         }
 
-        
+        #region Error Handling
+
+        protected void SelectCheckForException(object sender,
+                                        ObjectDataSourceStatusEventArgs e)
+        {
+            MessageUserControl.HandleDataBoundException(e); // Implementing Dans Nuget.  Dont forget to tell the asp webpage side to use this method
+                                                            // I mean this: <asp:ObjectDataSource ID="ArtistListODS" OnSelected="SelectCheckForException"
+        }
+
+        protected void InsertCheckForException(object sender,
+                                        ObjectDataSourceStatusEventArgs e)
+        {
+            if (e.Exception == null)
+            {
+                MessageUserControl.ShowInfo("Process Success", "Album has been added");
+            }
+            else
+            {
+                MessageUserControl.HandleDataBoundException(e);
+            }
+        }
+
+        protected void DeleteCheckForException(object sender,
+                                ObjectDataSourceStatusEventArgs e)
+        {
+            if (e.Exception == null)
+            {
+                MessageUserControl.ShowInfo("Process Success", "Album has been removed");
+            }
+            else
+            {
+                MessageUserControl.HandleDataBoundException(e);
+            }
+        }
+
+        protected void UpdateCheckForException(object sender,
+                                ObjectDataSourceStatusEventArgs e)
+        {
+            if (e.Exception == null)
+            {
+                MessageUserControl.ShowInfo("Process Success", "Album has been updated");
+            }
+            else
+            {
+                MessageUserControl.HandleDataBoundException(e);
+            }
+        }
+
+        #endregion
 
         protected void ArtistFetch_Click(object sender, EventArgs e)
         {
