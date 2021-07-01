@@ -48,7 +48,8 @@
     <div class="col-sm-9">
         <asp:Label ID="Label5" runat="server" Text="Tracks"></asp:Label>&nbsp;&nbsp;
         <asp:Label ID="TracksBy" runat="server" ></asp:Label>&nbsp;&nbsp;
-        <asp:Label ID="SearchArg" runat="server" ></asp:Label><br />
+        <%--<asp:Label ID="SearchArg" runat="server" ></asp:Label><br />--%>
+        <asp:HiddenField ID="SearchArg" runat="server" /><br />
         <asp:ListView ID="TracksSelectionList" runat="server"
             DataSourceID="TrackSelectionListODS"
             OnItemCommand="TracksSelectionList_ItemCommand"
@@ -178,8 +179,9 @@
                     <ItemTemplate >
                         <asp:CheckBox ID="Selected" runat="server" />
                         <asp:Label runat="server" ID="TrackId"
-                            Text='<%# Eval("TrackID") %>' Visible="false"></asp:Label>
+                            Text='<%# Eval("TrackID") %>' Visible="false"></asp:Label> 
                         &nbsp;&nbsp;
+                        <%--The above is not visable becuase the user doesn't need to see the primary key.--%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Track">
@@ -200,7 +202,8 @@
                     <ItemTemplate>
                         <asp:Label runat="server" ID="Milliseconds" Width="80px"
                             Text='<%# string.Format("{0:0.0}", (int)Eval("Milliseconds")/60000m)  %>'></asp:Label>
-                          &nbsp;&nbsp;
+                          <%--Notice That the formatting is done here, the presentation layer, not in linq--%>
+                        &nbsp;&nbsp;
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="($)">
@@ -229,11 +232,29 @@
     <asp:ObjectDataSource ID="TrackSelectionListODS" runat="server" 
         OldValuesParameterFormatString="original_{0}" 
         SelectMethod="List_TracksForPlaylistSelection" 
+        OnSelected="SelectCheckForException"
+        TypeName="ChinookSystem.BLL.TrackController">
+
+        <SelectParameters>
+            <asp:ControlParameter ControlID="TracksBy" 
+                PropertyName="Text" 
+                DefaultValue="garbagevalue" 
+                Name="tracksby" Type="String"></asp:ControlParameter>
+            <asp:ControlParameter ControlID="SearchArg" 
+                PropertyName="Value" 
+                DefaultValue="garbagevalue" 
+                Name="arg" Type="String"></asp:ControlParameter>
+        </SelectParameters>
+    </asp:ObjectDataSource>
+
+<%--    <asp:ObjectDataSource ID="TrackSelectionListODS" runat="server" 
+        OldValuesParameterFormatString="original_{0}" 
+        SelectMethod="List_TracksForPlaylistSelection" 
         TypeName="ChinookSystem.BLL.TrackController" >
         <SelectParameters>
             <asp:ControlParameter ControlID="TracksBy" PropertyName="Text" Name="tracksby" Type="String"></asp:ControlParameter>
             <asp:ControlParameter ControlID="SearchArg" PropertyName="Text" Name="arg" Type="String"></asp:ControlParameter>
         </SelectParameters>
-    </asp:ObjectDataSource>
+    </asp:ObjectDataSource>--%>
 
 </asp:Content>
