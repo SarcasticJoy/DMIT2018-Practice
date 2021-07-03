@@ -50,6 +50,7 @@
         <asp:Label ID="TracksBy" runat="server" ></asp:Label>&nbsp;&nbsp;
         <%--<asp:Label ID="SearchArg" runat="server" ></asp:Label><br />--%>
         <asp:HiddenField ID="SearchArg" runat="server" /><br />
+
         <asp:ListView ID="TracksSelectionList" runat="server"
             DataSourceID="TrackSelectionListODS"
             OnItemCommand="TracksSelectionList_ItemCommand"
@@ -59,7 +60,7 @@
                     <td>
                         <asp:LinkButton ID="AddtoPlaylist" runat="server"
                              CssClass="btn" CommandArgument='<%# Eval("TrackID") %>'>
-                            <span aria-hidden="true" class="glyphicon glyphicon-plus">&nbsp;</span>
+                            <i class="fa fa-plus" style="color:red; font-size:2em;"></i>&nbsp;
                         </asp:LinkButton>
                         </td>
                     <td>
@@ -172,6 +173,7 @@
             <i class="fa fa-times" style="color:red; font-size:2em;"></i>&nbsp;
         </asp:LinkButton>
         <br /><br />
+
         <asp:GridView ID="PlayList" runat="server" AutoGenerateColumns="False"
              Caption="PlayList" GridLines="Horizontal" BorderStyle="None">
             <Columns>
