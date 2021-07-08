@@ -166,7 +166,7 @@
         </asp:LinkButton>&nbsp;&nbsp;
         <asp:LinkButton ID="MoveDown" runat="server"
                 CssClass="btn" OnClick="MoveDown_Click" >
-            <i class="fa fa-chevron-up" style="color:blue; font-size:2em;"></i>&nbsp;
+            <i class="fa fa-chevron-down" style="color:blue; font-size:2em;"></i>&nbsp;
         </asp:LinkButton>&nbsp;&nbsp;
         <asp:LinkButton ID="DeleteTrack" runat="server"
                 CssClass="btn" OnClick="DeleteTrack_Click"  >
@@ -195,7 +195,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Name">
                     <ItemTemplate>
-                        <asp:Label runat="server" ID="TrachName"
+                        <asp:Label runat="server" ID="TrackName"
                             Text='<%# Eval("TrackName") %>'></asp:Label>
                           &nbsp;&nbsp;
                     </ItemTemplate>
